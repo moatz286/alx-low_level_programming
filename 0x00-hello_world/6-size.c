@@ -5,7 +5,7 @@
  * Description: 'print datatype'
  * Return: Always 0 (Success)
  */
-int main(void) 
+int main(void)
 {
 int intType;
 long int longIntType;
