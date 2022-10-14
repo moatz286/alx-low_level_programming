@@ -1,5 +1,11 @@
 #include<stdio.h>
-/* print string with put */
+/**
+ * main - Entry point
+ * 
+ * Description: 'print string with puts'
+ * 
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
 	puts("\"Programming is like building a multilingual puzzle");
