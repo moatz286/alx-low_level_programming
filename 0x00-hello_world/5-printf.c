@@ -1,7 +1,7 @@
 #include<stdio.h>
 /**
  * main - entry point
- * print srting with printf
+ * Description: print srting with printf
  */
 int main(void)
 {
