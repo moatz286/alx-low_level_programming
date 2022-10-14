@@ -1,9 +1,8 @@
 #include<stdio.h>
 /**
-* main - Entry point 
-* Description: 'print string with printf'
-* Return: Always 0 (Success)
-*/
+ * main - entry point
+ * print srting with printf
+ */
 int main(void)
 {
 	printf("with proper grammar, but the outcome is a piece of art,\n");
