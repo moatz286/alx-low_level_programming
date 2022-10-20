@@ -3,7 +3,7 @@
  * Return: 0
  */
 int main(void){
-	char txt = "_putchar";
+	int txt = "_";
 	_putchar("%s\n",txt);
 	return (0);
 }
