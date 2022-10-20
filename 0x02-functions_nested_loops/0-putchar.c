@@ -4,6 +4,6 @@
  */
 int main(void){
 	int txt = "_";
-	_putchar("%s\n",txt);
+	_putchar(txt);
 	return (0);
 }
