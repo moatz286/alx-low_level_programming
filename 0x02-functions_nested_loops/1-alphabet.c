@@ -1,9 +1,8 @@
 #include "main.h"
 
 /**
- * main - Entry point
  *
- * Return: Always 0
+ * print_alphabet - wirte the the lower-case alphabet on a line.
  */
 
 void print_alphabet(void)
