@@ -3,7 +3,12 @@
  * Return: 0
  */
 int main(void){
-	char ch = '_';
-	_putchar(ch);
+	char *ch;
+	ch = "_putchar";
+	while (ch)
+	{
+		_putchar(*ch);
+		ch++;
+	}
 	return (0);
 }
