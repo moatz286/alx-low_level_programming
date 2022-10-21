@@ -4,8 +4,7 @@
  * print_last_digit - will print the last digit of a given number.
  * @n: Number used to find the last digit.
  *
- * Description: will print the last digit of a given number. If the
- * 
+ * Description: will print the last digit of a given number. 
  *
  * Return: last digit as int value.
  */
