@@ -2,7 +2,7 @@
 
 /*
  *
- * Description : print_alphabet - wirte the the lower-case alphabet on a line.
+ * Description: print_alphabet - wirte the the lower-case alphabet on a line.
  *
  */
 
