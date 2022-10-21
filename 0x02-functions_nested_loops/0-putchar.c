@@ -3,9 +3,8 @@
  * Return: 0
  */
 int main(void){
-	char *ch;
-	ch = "_putchar";
-	while (ch)
+	char *ch = "_putchar\n";
+	while (*ch)
 	{
 		_putchar(*ch);
 		ch++;
