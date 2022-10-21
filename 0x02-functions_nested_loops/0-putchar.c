@@ -2,7 +2,8 @@
 /**
  * Return: 0
  */
-int main(void){
+int main(void)
+{
 	char *ch = "_putchar\n";
 	while (*ch)
 	{
