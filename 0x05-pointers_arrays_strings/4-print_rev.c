@@ -1,29 +1,21 @@
 #include "main.h"
 
-
 /**
-  * rev_string - reverse a string.
-  * @s: string to reverse
-  */
-void rev_string(char *s)
+ * print_rev - minic the stdio version of puts
+ * @s: the value to process to the stdout in reverse.
+ */
+void print_rev(char *s)
 {
-	int start, temp;
-	int end = 0;
+	int count;
 
-	while (*(s + end) != '\0')
+	while (*(s + count) != '\0')
 	{
-		end++;
+		count++;
 	}
 
-	end -= 1;
-	start = 0;
-	while (end > start)
+	while (count--)
 	{
-		temp = s[start];
-		s[start] = s[end];
-		s[end] = temp;
-		start++;
-		end--;
+		_putchar(*(s + (count)));
 	}
-
+	_putchar('\n');
 }
