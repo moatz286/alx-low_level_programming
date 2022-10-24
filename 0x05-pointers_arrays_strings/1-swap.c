@@ -6,7 +6,7 @@
  * @a: the first int.
  * @b: the second int.
  */
-void sawp_int(int *a, int *b)
+void swap_int(int *a, int *b)
 {
 	*a = *b;
 	*b = *a;
