@@ -26,9 +26,5 @@ int _sqrt_recursion(int n)
 			return (sqrt * 2);
 		return (-1);
 	}
-	else
-	{
-		return (sqrt_rec_odd(n, n - 2));
-	}
 }
 
