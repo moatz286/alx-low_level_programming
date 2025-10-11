@@ -1,81 +1,53 @@
 #include <stdio.h>
 
-#define MAX_DIGITS 200
-
-/**
- * print_number - Prints a large number stored digit by digit
- * @digits: Array holding digits (but we're not using it as an array in the traditional sense)
- * @len: Length of the number
- */
-void print_number(int pos, int len)
-{
-    int i;
-    
-    for (i = len - 1; i >= 0; i--)
-    {
-        /* We'll calculate digits on the fly */
-        if (i == pos)
-            putchar('0' + (len - pos));
-        else
-            putchar('0');
-    }
-}
-
-/**
- * main - Prints first 98 Fibonacci numbers
- *
- * Return: Always 0
- */
 int main(void)
 {
     int count;
-    int a1, a2, b1, b2;  /* We'll split numbers into parts */
-    int temp1, temp2;
-    int carry;
+    unsigned long a_h = 0, a_l = 1;  /* Split F1 into high and low parts */
+    unsigned long b_h = 0, b_l = 2;  /* Split F2 into high and low parts */
+    unsigned long c_h, c_l, carry;
     
     printf("1, 2");
-    
-    /* Initialize first two Fibonacci numbers */
-    a1 = 1;  /* Lower part of F1 */
-    a2 = 0;  /* Upper part of F1 */
-    b1 = 2;  /* Lower part of F2 */  
-    b2 = 0;  /* Upper part of F2 */
     
     for (count = 3; count <= 98; count++)
     {
         printf(", ");
         
-        /* Calculate next Fibonacci number */
+        /* Add the two numbers: c = a + b */
         carry = 0;
-        temp1 = b1;
-        temp2 = b2;
-        
-        /* Add lower parts */
-        b1 = a1 + b1;
-        if (b1 >= 1000000000)  /* Handle carry to upper part */
-        {
-            b1 -= 1000000000;
+        c_l = a_l + b_l;
+        if (c_l < a_l || c_l < b_l)  /* Check for overflow */
             carry = 1;
-        }
         
-        /* Add upper parts with carry */
-        b2 = a2 + b2 + carry;
+        c_h = a_h + b_h + carry;
         
-        /* Update previous numbers */
-        a1 = temp1;
-        a2 = temp2;
-        
-        /* Print the number */
-        if (b2 > 0)
+        /* Handle the case where we need to print a very large number */
+        if (c_h > 0)
         {
-            printf("%d", b2);
-            /* Print lower part with leading zeros */
-            printf("%09d", b1);
+            printf("%lu", c_h);
+            /* Print lower part with leading zeros if needed */
+            unsigned long temp = c_l;
+            int digits = 0;
+            while (temp > 0)
+            {
+                digits++;
+                temp /= 10;
+            }
+            /* Add leading zeros */
+            for (int i = 0; i < 18 - digits; i++)
+                printf("0");
+            printf("%lu", c_l);
         }
         else
         {
-            printf("%d", b1);
+            printf("%lu", c_l);
         }
+        
+        /* Update for next iteration */
+        a_h = b_h;
+        a_l = b_l;
+        b_h = c_h;
+        b_l = c_l;
     }
     
     printf("\n");
