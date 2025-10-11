@@ -1,0 +1,46 @@
+# Compiler
+CC = gcc
+
+# Compiler flags
+CFLAGS = -Wall -Werror -Wextra -pedantic
+
+# Source files
+SRC = main.c school.c
+
+# Object files
+OBJ = $(SRC:.c=.o)
+
+# Executable name
+NAME = school
+
+# Remove command
+RM = rm -f
+
+# Default rule - builds executable
+all: $(NAME)
+
+# Build executable from object files
+$(NAME): $(OBJ)
+	$(CC) -o $(NAME) $(OBJ)
+
+# Compile .c files to .o files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Delete Emacs and Vim temporary files along with executable
+clean:
+	$(RM) *~ vgcore.* \#*\# $(NAME)
+
+# Delete object files
+oclean:
+	$(RM) $(OBJ)
+
+# Delete all temporary files, executable, and object files
+fclean: clean oclean
+
+# Force recompilation of all source files
+re: fclean all
+
+# Phony targets
+.PHONY: all clean oclean fclean re
+
