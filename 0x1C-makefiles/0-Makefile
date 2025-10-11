@@ -1,0 +1,27 @@
+# The default rule is 'all', which depends on the final 'school' executable.
+all: school
+
+# Rule to link the final executable.
+# It depends on the object files. Make will ensure these are built first.
+# The command explicitly lists the object files and the output file.
+school: main.o school.o
+	gcc main.o school.o -o school
+
+# Rule to compile main.c into main.o.
+# It depends on both the C source file and the header file.
+main.o: main.c m.h
+	gcc -Wall -c main.c -o main.o
+
+# Rule to compile school.c into school.o.
+# It also depends on both its C source file and the header file.
+school.o: school.c m.h
+	gcc -Wall -c school.c -o school.o
+
+# Declare that 'all' and 'clean' are not actual files.
+.PHONY: all clean
+
+# Rule to remove all generated files.
+# The command explicitly lists all files to be removed.
+clean:
+	rm -f school main.o school.o
+
