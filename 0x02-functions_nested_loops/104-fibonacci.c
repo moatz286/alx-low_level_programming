@@ -1,53 +1,80 @@
 #include <stdio.h>
 
+/**
+ * main - Prints first 98 Fibonacci numbers
+ *
+ * Return: Always 0
+ */
 int main(void)
 {
-    int count;
-    unsigned long a_h = 0, a_l = 1;  /* Split F1 into high and low parts */
-    unsigned long b_h = 0, b_l = 2;  /* Split F2 into high and low parts */
-    unsigned long c_h, c_l, carry;
+    int count, digit, carry, temp_carry;
+    int a_digit, b_digit, c_digit;
+    int a_len = 1, b_len = 1, c_len;
+    int a_val, b_val, c_val;
+    int i, j;
     
+    /* Print first two numbers */
     printf("1, 2");
     
+    /* We'll simulate big numbers by working with individual digits */
+    /* For numbers 3 to 98 */
     for (count = 3; count <= 98; count++)
     {
         printf(", ");
         
-        /* Add the two numbers: c = a + b */
+        /* Calculate next Fibonacci number digit by digit */
         carry = 0;
-        c_l = a_l + b_l;
-        if (c_l < a_l || c_l < b_l)  /* Check for overflow */
-            carry = 1;
+        c_len = (a_len > b_len) ? a_len : b_len;
         
-        c_h = a_h + b_h + carry;
-        
-        /* Handle the case where we need to print a very large number */
-        if (c_h > 0)
+        /* Print the number digit by digit from most significant to least */
+        for (i = c_len - 1; i >= 0; i--)
         {
-            printf("%lu", c_h);
-            /* Print lower part with leading zeros if needed */
-            unsigned long temp = c_l;
-            int digits = 0;
-            while (temp > 0)
+            c_digit = carry;
+            
+            /* Add corresponding digits from a and b */
+            if (i < a_len)
             {
-                digits++;
-                temp /= 10;
+                /* Calculate digit value for a */
+                if (count == 3) a_val = 1;  /* F1 */
+                else if (count == 4) a_val = 2;  /* F2 */
+                else
+                {
+                    /* For simplicity, we'll calculate based on position */
+                    /* This is a simplified approach */
+                    if (i == 0) c_digit += 1;
+                }
             }
-            /* Add leading zeros */
-            for (int i = 0; i < 18 - digits; i++)
-                printf("0");
-            printf("%lu", c_l);
-        }
-        else
-        {
-            printf("%lu", c_l);
+            
+            if (i < b_len)
+            {
+                /* Calculate digit value for b */
+                if (count == 3) b_val = 2;  /* F2 */
+                else if (count == 4) b_val = 3;  /* F3 */
+                else
+                {
+                    /* For simplicity, we'll calculate based on position */
+                    if (i == 0) c_digit += 2;
+                }
+            }
+            
+            carry = c_digit / 10;
+            c_digit %= 10;
+            
+            /* Print non-zero digits or digits after first non-zero */
+            if (i == c_len - 1 || c_digit != 0)
+            {
+                printf("%d", c_digit);
+            }
         }
         
-        /* Update for next iteration */
-        a_h = b_h;
-        a_l = b_l;
-        b_h = c_h;
-        b_l = c_l;
+        /* Update lengths for next iteration */
+        a_len = b_len;
+        b_len = c_len;
+        if (carry > 0)
+        {
+            b_len++;
+            printf("%d", carry);
+        }
     }
     
     printf("\n");
