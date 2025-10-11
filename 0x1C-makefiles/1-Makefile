@@ -1,0 +1,23 @@
+# Compiler
+CC = gcc
+
+# Source files
+SRC = main.c school.c
+
+# Executable name
+EXEC = school
+
+# Default rule
+all: $(EXEC)
+
+# Build executable
+$(EXEC): $(SRC)
+	$(CC) -o $(EXEC) $(SRC)
+
+# Clean rule (optional but recommended)
+clean:
+	rm -f $(EXEC)
+
+# Phony targets
+.PHONY: all clean
+
