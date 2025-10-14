@@ -50,6 +50,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value);
 /* Helper functions */
 void print_array(int *array, size_t left, size_t right);
 int binary_search_recursive(int *array, size_t left, size_t right, int value);
-int advanced_binary_recursive(int *array, size_t left, size_t right, int value);
+int advanced_binary_recursive(int *array, size_t left, size_t right,
+    int value);
 
 #endif /* SEARCH_ALGOS_H */
