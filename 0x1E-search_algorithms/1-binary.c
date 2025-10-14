@@ -6,9 +6,10 @@
  * @left: left index of the array
  * @right: right index of the array
  */
+
 void print_array(int *array, size_t left, size_t right)
 {
-	size_t i;
+size_t i;
 
 	printf("Searching in array: ");
 	for (i = left; i <= right; i++)
@@ -28,6 +29,7 @@ void print_array(int *array, size_t left, size_t right)
  *
  * Return: index where value is located, or -1 if not found
  */
+
 int binary_search(int *array, size_t size, int value)
 {
 	size_t left, right, mid;
