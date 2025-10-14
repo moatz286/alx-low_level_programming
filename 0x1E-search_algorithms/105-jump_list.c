@@ -11,7 +11,7 @@
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
 	size_t step, i;
-	listint_t *current, *prev;
+	listint_t *current, *prev, *temp;
 
 	if (list == NULL || size == 0)
 		return (NULL);
@@ -27,29 +27,36 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		for (i = 0; current->next && i < step; i++)
 			current = current->next;
 
-		printf("Value checked at index [%lu] = [%d]\n", current->index, current->n);
+		printf("Value checked at index [%lu] = [%d]\n",
+			current->index, current->n);
+
+		if (current->n >= value)
+			break;
 	}
 
-	if (!current || current->n >= value)
+	/* Determine the search range */
+	if (prev == NULL)
 	{
-		if (!prev)
-			return (NULL);
-
+		/* Value is smaller than first element */
+		printf("Value found between indexes [0] and [%lu]\n", step);
+		temp = list;
+	}
+	else
+	{
 		printf("Value found between indexes [%lu] and [%lu]\n",
-			   prev->index, current ? current->index : size - 1);
+			prev->index, current->index);
+		temp = prev;
+	}
 
-		/* Linear search in the block */
-		current = prev;
-		while (current && current->n <= value)
-		{
-			printf("Value checked at index [%lu] = [%d]\n",
-				   current->index, current->n);
-			if (current->n == value)
-				return (current);
-			current = current->next;
-		}
+	/* Linear search in the block */
+	while (temp && temp->index <= current->index)
+	{
+		printf("Value checked at index [%lu] = [%d]\n",
+			temp->index, temp->n);
+		if (temp->n == value)
+			return (temp);
+		temp = temp->next;
 	}
 
 	return (NULL);
 }
-

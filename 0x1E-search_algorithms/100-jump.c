@@ -19,20 +19,20 @@ int jump_search(int *array, size_t size, int value)
 	prev = 0;
 
 	/* Jump ahead in steps */
-	while (array[(step < size ? step : size - 1)] < value)
+	while (prev < size && array[prev] < value)
 	{
 		printf("Value checked array[%lu] = [%d]\n", prev, array[prev]);
-		prev = step;
-		step += sqrt(size);
-		if (prev >= size)
-			return (-1);
+		prev += step;
 	}
 
-	printf("Value checked array[%lu] = [%d]\n", prev, array[prev]);
-	printf("Value found between indexes [%lu] and [%lu]\n", prev, step);
+	/* Go back one step for the linear search range */
+	i = (prev >= step) ? prev - step : 0;
+	prev = (prev < size) ? prev : size - 1;
+
+	printf("Value found between indexes [%lu] and [%lu]\n", i, prev);
 
 	/* Linear search in the block */
-	for (i = prev; i <= (step < size ? step : size - 1); i++)
+	for (; i <= prev && i < size; i++)
 	{
 		printf("Value checked array[%lu] = [%d]\n", i, array[i]);
 		if (array[i] == value)
